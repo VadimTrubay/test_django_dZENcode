@@ -5,6 +5,9 @@ psycopg2-binary==2.9.9
 Pillow==10.4.0
 django-cors-headers==4.4.0
 django-environ==0.11.2
+django_simple_captcha==0.6.0
+channels==4.1.0
+
 
 # dev
 black==24.8.0
