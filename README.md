@@ -42,5 +42,4 @@ Test task project for DRF(django rest framework)
 
 - Python
 - Django
-- PostgreSQL
 - GitHub
