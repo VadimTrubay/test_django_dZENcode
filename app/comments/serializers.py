@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from .models import Comment
-from ..users.serializers import UserSerializer
+from users.serializers import CustomUserSerializer
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    user = CustomUserSerializer(read_only=True)
     replies = serializers.SerializerMethodField()
 
     class Meta:

@@ -4,11 +4,11 @@ from datetime import timedelta
 import environ
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR_ENV = Path(__file__).resolve().parent.parent.parent
 
-print(BASE_DIR)
 env = environ.Env(DEBUG=(bool, False))
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+environ.Env.read_env(os.path.join(BASE_DIR_ENV, ".env"))
 
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     "channels",
     "captcha",
     "users.apps.UsersConfig",
-    # "comments.apps.CommentsConfig",
+    "comments.apps.CommentsConfig",
 ]
 
 MIDDLEWARE = [
@@ -117,7 +117,7 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "http://localhost:4000",
 ]
 
 REST_FRAMEWORK = {
