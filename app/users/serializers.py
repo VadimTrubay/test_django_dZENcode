@@ -7,7 +7,9 @@ from .models import CustomUser
 
 class SigninSerializer(serializers.Serializer):
     email = serializers.EmailField(label=_("Email"))
-    password = serializers.CharField(label=_("Password"), style={'input_type': 'password'}, trim_whitespace=False)
+    password = serializers.CharField(
+        label=_("Password"), style={"input_type": "password"}, trim_whitespace=False
+    )
 
     def validate(self, attrs):
         email = attrs.get("email")
@@ -24,10 +26,12 @@ class SigninSerializer(serializers.Serializer):
 
             access_token = AccessToken.for_user(user)
             return {
-                'access_token': str(access_token),
+                "access_token": str(access_token),
             }
         else:
-            raise exceptions.AuthenticationFailed(_("Must include 'email' and 'password'."))
+            raise exceptions.AuthenticationFailed(
+                _("Must include 'email' and 'password'.")
+            )
 
 
 class SignupSerializer(serializers.ModelSerializer):
@@ -47,9 +51,7 @@ class SignupSerializer(serializers.ModelSerializer):
 
         access_token = AccessToken.for_user(user)
 
-        return {
-            "access_token": str(access_token)
-        }
+        return {"access_token": str(access_token)}
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
