@@ -1,5 +1,5 @@
+# routing.py
 from django.urls import re_path
-
 from .consumers import CommentConsumer
 
 websocket_urlpatterns = [
