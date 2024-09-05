@@ -4,7 +4,11 @@ from rest_framework.viewsets import ModelViewSet
 
 from .models import Comment
 from .serializers import CommentSerializer
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
+from rest_framework.permissions import (
+    IsAuthenticatedOrReadOnly,
+    IsAuthenticated,
+    AllowAny,
+)
 
 
 class CommentViewSet(ModelViewSet):
