@@ -12,7 +12,7 @@ urlpatterns = [
     path("api/v1/admin/", admin.site.urls),
     path("api/v1/", include("users.urls")),
     path("api/v1/", include(router.urls)),
-    path("api/v1/captcha/", include("captcha.urls")),
+    path("captcha/", include("captcha.urls")),
     path(
         "api/v1/api-auth/", include("rest_framework.urls", namespace="rest_framework")
     ),

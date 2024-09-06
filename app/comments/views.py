@@ -15,7 +15,7 @@ from rest_framework.permissions import (
 class CommentPagination(PageNumberPagination):
     page_size = 5  # Количество объектов на страницу
     page_size_query_param = "page_size"  # Опционально: возможность изменения размера страницы через параметр запроса
-    max_page_size = 100  # Максимальный размер страницы
+    max_page_size = 25  # Максимальный размер страницы
 
 
 class CommentViewSet(ModelViewSet):
@@ -33,3 +33,4 @@ class CommentViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+        print()

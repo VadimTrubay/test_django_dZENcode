@@ -1,10 +1,9 @@
 # forms.py
 from django import forms
 from .models import Comment
-from captcha.fields import CaptchaField
 from PIL import Image
 import tempfile
-import os
+from captcha.fields import CaptchaField
 
 
 class CommentForm(forms.ModelForm):
