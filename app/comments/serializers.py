@@ -7,14 +7,18 @@ from .models import Comment
 
 class CommentSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
-    # replies = serializers.SerializerMethodField()
+    replies = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
         fields = "__all__"
-        # fields = ["id", "user", "text", "parent", "created_at"]
 
-    # def get_replies(self, obj):
-    #     if obj.replies.exists():
-    #         return CommentSerializer(obj.replies.all(), many=True).data
-    #     return []
+    def get_replies(self, obj):
+        # Limit to only top-level replies (no recursion for nested replies)
+        max_depth = self.context.get("max_depth", 1)
+        if max_depth > 0 and obj.replies.exists():
+            # Reduce depth by 1 for nested replies
+            return CommentSerializer(
+                obj.replies.all(), many=True, context={"max_depth": max_depth - 1}
+            ).data
+        return []

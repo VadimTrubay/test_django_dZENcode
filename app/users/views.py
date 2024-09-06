@@ -22,6 +22,7 @@ class SignupView(generics.CreateAPIView):
 
 class SigninView(TokenViewBase):
     serializer_class = SigninSerializer
+    permission_classes = [AllowAny]
 
 
 class UserDetailView(generics.RetrieveAPIView):
@@ -33,7 +34,7 @@ class UserDetailView(generics.RetrieveAPIView):
 
 
 class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         return Response({"message": "Successfully logout"}, status=200)
