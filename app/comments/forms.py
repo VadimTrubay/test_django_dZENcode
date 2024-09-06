@@ -1,7 +1,10 @@
+# forms.py
 from django import forms
 from .models import Comment
 from captcha.fields import CaptchaField
 from PIL import Image
+import tempfile
+import os
 
 
 class CommentForm(forms.ModelForm):
@@ -30,16 +33,17 @@ class CommentForm(forms.ModelForm):
 
 
 class FileUploadForm(forms.Form):
-    image = forms.ImageField()
-    text_file = forms.FileField()
+    image = forms.ImageField(required=False)
+    text_file = forms.FileField(required=False)
 
     def clean_image(self):
         image = self.cleaned_data.get("image")
         if image:
             img = Image.open(image)
             img.thumbnail((320, 240), Image.ANTIALIAS)
-            img.save(image)
-        return image
+            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
+            img.save(temp_file.name, "JPEG")
+            return temp_file
 
     def clean_text_file(self):
         text_file = self.cleaned_data.get("text_file")
