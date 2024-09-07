@@ -34,6 +34,7 @@ class CommentForm(forms.ModelForm):
 class FileUploadForm(forms.Form):
     image = forms.ImageField(required=False)
     text_file = forms.FileField(required=False)
+    captcha = CaptchaField()
 
     def clean_image(self):
         image = self.cleaned_data.get("image")
