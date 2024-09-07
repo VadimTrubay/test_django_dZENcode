@@ -19,6 +19,6 @@ class CommentSerializer(serializers.ModelSerializer):
             return CommentSerializer(
                 obj.replies.all(),
                 many=True,
-                context=self.context  # Pass context if necessary
+                context=self.context,  # Pass context if necessary
             ).data
         return []
