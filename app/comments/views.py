@@ -40,7 +40,9 @@ class CommentViewSet(ModelViewSet):
         instance_id = instance.id
         user_id = instance.user.id
         if user_id != request.user.id:
-            return Response({"error": "You cannot delete this comment"}, status=status.HTTP_403_FORBIDDEN)
+            return Response(
+                {"error": "You cannot delete this comment"},
+                status=status.HTTP_403_FORBIDDEN,
+            )
         self.perform_destroy(instance)
         return Response({"id": instance_id}, status=status.HTTP_200_OK)
-
