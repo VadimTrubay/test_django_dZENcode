@@ -1,8 +1,10 @@
 # test_django_dZENcode
-Test task project for DRF(django rest framework) 
 
+Test project for DRF(django rest framework)
+
+- This is a simple project that implements the functionality of user registration and exchange
+- of messages and comments with other users with the ability to add and delete your messages and comments.
 - This project is implemented using Django Rest Framework.
-
 
 ### Install
 
@@ -23,20 +25,22 @@ Test task project for DRF(django rest framework)
     pip install -r requirements.txt
 
 #### run in terminal command:
-    
+    cd app
     python manage.py migrate
-
-#### run in terminal command:
-
-    python manage.py createsuperuser
 
 #### run server:
 
     python manage.py runserver
 
+
+### Running the project using Docker
+  To start the using Docker, run:
+
+    docker-compose up --build  
+
 #### use application for url:
 
-  http://127.0.0.1:8000/swagger/
+http://127.0.0.1:8000
 
 # Used technologies:
 
