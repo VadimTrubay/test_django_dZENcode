@@ -7,11 +7,12 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "8000:8000"  # This can be omitted as Render automatically maps ports
     environment:
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DJANGO_DEBUG: ${DJANGO_DEBUG}
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
+      PORT: 8000 # Make sure PORT is set to 8000 as Render expects this
     networks:
       - app_network
 
