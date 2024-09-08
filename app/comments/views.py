@@ -14,22 +14,22 @@ from rest_framework.permissions import (
 
 
 class CommentPagination(PageNumberPagination):
-    page_size = 25  # Количество объектов на страницу
-    page_size_query_param = "page_size"  # Опционально: возможность изменения размера страницы через параметр запроса
-    max_page_size = 25  # Максимальный размер страницы
+    page_size = 25
+    page_size_query_param = "page_size"
+    max_page_size = 25
 
 
 class CommentViewSet(ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
-    filter_backends = [filters.OrderingFilter]  # Добавляем backend для сортировки
+    filter_backends = [filters.OrderingFilter]
     ordering_fields = [
         "created_at",
         "user__username",
         "user__email",
-    ]  # Указываем доступные для сортировки поля
-    ordering = ["created_at"]  # Сортировка по умолчанию
+    ]
+    ordering = ["created_at"]
     pagination_class = CommentPagination
 
     def perform_create(self, serializer):

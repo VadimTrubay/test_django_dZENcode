@@ -14,11 +14,10 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_replies(self, obj):
-        # Fetch and serialize all replies recursively, without limiting depth
         if obj.replies.exists():
             return CommentSerializer(
                 obj.replies.all(),
                 many=True,
-                context=self.context,  # Pass context if necessary
+                context=self.context,
             ).data
         return []

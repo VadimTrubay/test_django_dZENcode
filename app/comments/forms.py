@@ -15,7 +15,6 @@ class CommentForm(forms.ModelForm):
 
     def clean_text(self):
         text = self.cleaned_data.get("text")
-        # Проверка на допустимые HTML теги
         allowed_tags = [
             "<a>",
             "</a>",
