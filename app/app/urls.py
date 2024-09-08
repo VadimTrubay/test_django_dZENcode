@@ -14,5 +14,5 @@ urlpatterns = [
     path(
         "api/v1/api-auth/", include("rest_framework.urls", namespace="rest_framework")
     ),
-    path("ws/", include(websocket_urlpatterns)),
+    # path("ws/", include(websocket_urlpatterns)),
 ]
