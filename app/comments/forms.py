@@ -15,7 +15,7 @@ class CommentForm(forms.ModelForm):
         fields = ["user", "text", "parent"]
 
     def validate_text(self, value):
-        allowed_tags = ['a', 'code', 'i', 'strong']
+        allowed_tags = ["a", "code", "i", "strong"]
         cleaned_text = bleach.clean(value, tags=allowed_tags, strip=True)
         return cleaned_text
 
