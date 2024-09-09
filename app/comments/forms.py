@@ -1,4 +1,5 @@
 # forms.py
+import bleach
 from django import forms
 from .models import Comment
 from PIL import Image
@@ -13,21 +14,10 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ["user", "text", "parent"]
 
-    def clean_text(self):
-        text = self.cleaned_data.get("text")
-        allowed_tags = [
-            "<a>",
-            "</a>",
-            "<code>",
-            "</code>",
-            "<i>",
-            "</i>",
-            "<strong>",
-            "</strong>",
-        ]
-        for tag in allowed_tags:
-            text = text.replace(tag, "")
-        return text
+    def validate_text(self, value):
+        allowed_tags = ['a', 'code', 'i', 'strong']
+        cleaned_text = bleach.clean(value, tags=allowed_tags, strip=True)
+        return cleaned_text
 
 
 class FileUploadForm(forms.Form):
