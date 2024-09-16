@@ -6,15 +6,29 @@ services:
     command: python app/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
+    restart: always
+    env_file:
+      - .env
     ports:
-      - "8000:8000"  # This can be omitted as Render automatically maps ports
-    environment:
-      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
-      DJANGO_DEBUG: ${DJANGO_DEBUG}
-      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
-      PORT: 8000 # Make sure PORT is set to 8000 as Render expects this
+      - "8000:8000"
+    depends_on:
+      - db
     networks:
       - app_network
 
+#  db:
+#    image: postgres:16.4
+#    env_file:
+#      - .env
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data/
+#    environment:
+#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#    networks:
+#      - app_network
+
 networks:
   app_network:
+
+volumes:
+  postgres_data:
