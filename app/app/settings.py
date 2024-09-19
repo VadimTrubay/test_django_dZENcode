@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
+    'silk',
     "channels",
     "captcha",
     "users.apps.UsersConfig",
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = "app.urls"
@@ -123,10 +125,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+# Папка для продакшена
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
+
+# Папка для разработки
 STATICFILES_DIRS = (BASE_DIR / "static",)
 
 # Default primary key field type

@@ -14,3 +14,4 @@ bleach==6.1.0
 # dev
 black==24.8.0
 pre_commit==3.8.0
+django-silk==5.2.0
