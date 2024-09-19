@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
-    'silk',
+    "silk",
     "channels",
     "captcha",
     "users.apps.UsersConfig",
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
-    'silk.middleware.SilkyMiddleware',
+    "silk.middleware.SilkyMiddleware",
 ]
 
 ROOT_URLCONF = "app.urls"
