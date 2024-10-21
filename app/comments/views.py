@@ -35,6 +35,31 @@ class CommentViewSet(ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    # def perform_create(self, serializer):
+    #     # В случае создания комментария можно указать parent, если это ответ
+    #     parent = self.request.data.get('parent', None)
+    #     if parent:
+    #         parent_comment = Comment.objects.get(id=parent)
+    #         serializer.save(parent=parent_comment)
+    #     else:
+    #         serializer.save()
+
+    # def perform_create(self, serializer):
+    #     # Получаем родителя из данных запроса (если он был передан)
+    #     parent_id = self.request.data.get('parent')
+    #
+    #     if parent_id:
+    #         try:
+    #             # Проверяем, существует ли комментарий с указанным ID родителя
+    #             parent_comment = Comment.objects.get(id=parent_id)
+    #             serializer.save(user=self.request.user, parent=parent_comment)
+    #         except Comment.DoesNotExist:
+    #             # Обработка случая, если родительский комментарий не найден
+    #             raise serializers.ValidationError("Родительский комментарий не найден.")
+    #     else:
+    #         # Если родитель не указан, сохраняем комментарий как корневой
+    #         serializer.save(user=self.request.user)
+
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance_id = instance.id
