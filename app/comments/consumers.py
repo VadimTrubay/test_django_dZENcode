@@ -26,9 +26,7 @@ class CommentConsumer(AsyncWebsocketConsumer):
         # Serialize and broadcast the comment
         serialized_comment = CommentSerializer(comment).data
         await self.channel_layer.group_send(
-            "comments", {
-                "type": "comment_message",
-                "message": serialized_comment}
+            "comments", {"type": "comment_message", "message": serialized_comment}
         )
 
     # Use sync_to_async to handle synchronous DB calls in an async context
