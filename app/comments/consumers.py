@@ -51,7 +51,7 @@ class CommentConsumer(AsyncWebsocketConsumer):
             parent_id=parent_id if parent_id else None,
         )
         # Предзагружаем связанные ответы
-        return Comment.objects.prefetch_related('replies').get(id=comment.id)
+        return Comment.objects.prefetch_related("replies").get(id=comment.id)
 
     async def comment_message(self, event):
         message = event["message"]
