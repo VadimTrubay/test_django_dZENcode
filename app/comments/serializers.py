@@ -1,8 +1,7 @@
-# serializers.py
+from asgiref.sync import sync_to_async
 from rest_framework import serializers
-
+from comments.models import Comment
 from users.serializers import CustomUserSerializer
-from .models import Comment
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -13,11 +12,7 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = "__all__"
 
-    def get_replies(self, obj):
-        if obj.replies.exists():
-            return CommentSerializer(
-                obj.replies.all(),
-                many=True,
-                context=self.context,
-            ).data
-        return []
+    async def get_replies(self, obj):
+        # Асинхронно получаем связанные комментарии
+        replies = await sync_to_async(lambda: list(obj.replies.all()))()
+        return CommentSerializer(replies, many=True, context=self.context).data
