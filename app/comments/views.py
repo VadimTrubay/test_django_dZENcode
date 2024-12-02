@@ -1,5 +1,5 @@
 # view.py
-from rest_framework import viewsets, filters, status
+from rest_framework import filters, status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -7,9 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 from .models import Comment
 from .serializers import CommentSerializer
 from rest_framework.permissions import (
-    IsAuthenticatedOrReadOnly,
     IsAuthenticated,
-    AllowAny,
 )
 
 
